@@ -9,20 +9,14 @@ const TaskAPI = require('./routes/task');
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/v1",UserAPI);
+app.use("/api/v1", UserAPI);
+app.use("/api/v2", TaskAPI);
 
-app.use("/api/v2",TaskAPI);
-
-
-//localhost:1000/api/v1/sign-in
-
-//localhost:1000/api/v2/create-task
-
-app.use("/",(req,res)=>{
-    res.send("hello from backend side");
+app.use("/", (req, res) => {
+    res.send("Task Management API is running.");
 });
 
-const PORT=1000;
- app.listen(PORT, ()=>{
-    console.log("server started at http://localhost:1000")
- });
+const PORT = process.env.PORT || 1000;
+app.listen(PORT, () => {
+    console.log(`Server started at http://localhost:${PORT}`);
+});
